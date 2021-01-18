@@ -1,0 +1,67 @@
+
+{% extends 'index.html' %}
+
+{% block title %}  Compra {% endblock %}
+
+{% block Header %} 
+        <ul>
+            <li><a href="/">  INICIO </a></li>
+            <li><a href=""> COMPRA </a></li>
+            <li><a href="/status"> STATUS </a></li>
+        </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="title grid">
+        <h1 class="title_text">Invertir</h1>      
+    </div>
+            <form action="purchase" method="POST">  
+                
+                <div>
+                <input type="hidden" id="fname" name="date" value="{{today_2}}">
+                </div>
+                <div>
+                <input type="hidden" id="fname" name="time" value="{{time}}">
+                </div>
+
+                <div>       
+                            <div>  
+                                <label for ='symbol'> FROM </label>
+                                <select name="from_currency" value = " {{symbol}}" {{form.from_currency}}
+                                </select>
+                            </div>
+                            <div>  
+                                <label for="convert"> TO </label>
+                                <select name="to_currency" value = " {{convert}}"{{form.to_currency}} </select>
+                            </div>
+                            <div>
+                                    <input type="text" id="Q" name="form_quantity" value ="{{amount}}" placeholder="Q" required>
+
+                                </label>
+                            </div>
+
+                                <div class ="contenedor">
+                                <button  type='button' class = "button_calculator"> <i class="fa fa-calculator fa-2x"></i></button> 
+                                </div>
+                    <div>
+                        <label for="convert_">
+                            Cantidad
+                            <input type="text" id="Q" name="to_quantity" placeholder="Q" value = "{{cantidad_2}}" required>
+                            
+                        </label>
+                    </div>
+
+                        <div>
+                            <label for="P.U">
+                                <P class="U"></P>
+                                <input type="text" id="Q" name="precio" placeholder="Precio U" required>
+                            </label>
+                        </div>
+
+                        <div class ='field'>
+                            {{form.Guardar}}   
+                        </div>
+                </div>
+            </form>
+
+{% endblock %}

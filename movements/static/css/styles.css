@@ -1,0 +1,27 @@
+body > header, body > main, body > footer {
+    padding: 16px;
+}
+
+section.container {
+    min-height: calc(100wh - 90px);
+}
+
+header, footer {
+    background-color: var(--background);
+}
+
+header {
+    display: grid;
+    grid-template-columns: auto 25%;
+}
+
+
+.header_crypto {
+    display: flex;
+    align-items: center;
+}
+
+.button_calculator {
+    width: 10%;
+    height: 10%;
+}

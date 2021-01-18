@@ -1,0 +1,9 @@
+config.py
+
+.vscode
+
+test.drawio 
+
+__pycache__/
+
+venv/

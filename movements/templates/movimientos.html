@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+
+{% block title %}  MOVIMIENTOS {% endblock %}
+
+{% block Header %} 
+                <ul>
+                <li><a href="/index">  INICIO </a></li>
+                <li><a href="/purchase"> COMPRA</a></li>
+                <li><a href="/status">  STATUS </a></li>
+                </ul>
+{% endblock %}
+
+
+{% block content %}
+                        <div class="title grid">
+                                <h1 class="title_text">Movimientos</h1>                    
+                        </div>
+        {% if datos|length > 0 %}
+                                <table>
+                                <tr>
+                                        <th class="FECHA">Fecha</th>
+                                        <th class="HORA">Hora</th>
+                                        <th class="FROM">From</th>
+                                        <th class = 'Q'> Q </th>
+                                        <th class = 'TO'> TO </th>
+                                        <th class = 'Q'> Q </th>
+                                        <th class = 'P.U'> P.U</th>
+                                </tr> 
+                        {% for ingresos in datos %}
+                                <tr>
+                                        <td>{{ ingresos.0 }}</td>
+                                        <td>{{ ingresos.1 }}</td>
+                                        <td>{{ ingresos.2 }}</td>
+                                        <td>{{ ingresos.3 }}</td>
+                                        <td>{{ ingresos.4 }}</td>
+                                        <td>{{ ingresos.5 }}</td>
+                                        <td>{{ ingresos.6 }}</td>
+                                        <td>{{ ingresos.7 }}</td>
+                                        
+                                </tr>
+                        {% endfor %}
+                                </table>
+        {% else %}
+        <p>No hay movimientos</p>
+        {% endif %}
+{% endblock %}
