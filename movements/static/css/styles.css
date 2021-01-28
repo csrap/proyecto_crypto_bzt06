@@ -1,27 +1,52 @@
 body > header, body > main, body > footer {
-    padding: 16px;
+    padding: 25px;
 }
 
 section.container {
     min-height: calc(100wh - 90px);
 }
 
-header, footer {
-    background-color: var(--background);
+header{
+    background-color: #18162c;
+    text-align: left;
+    color: cornsilk;
+    width: 100%;
+    height: 100%;
+    
 }
 
-header {
-    display: grid;
-    grid-template-columns: auto 25%;
+footer {
+    background-color: #18162c;
+    text-align: center;
+    color: #20aab9;
+    width: 100%;
+    height: 100%;
 }
 
 
-.header_crypto {
-    display: flex;
-    align-items: center;
+.select_2 {
+width: 50%; 
 }
 
-.button_calculator {
-    width: 10%;
-    height: 10%;
+.ingreso_cantidad {
+    size: 25px;
 }
+
+.h1_movimientos {
+    text-align: center;
+    font-family: "FontAwesome"; 
+}
+
+.nav_bottom {
+    background-color: #0e7290;
+    padding-top: 25px;
+    padding-right: 500px;
+
+}
+
+.letra_header {
+    color: #20aab9;
+    font-size: 2em; /* 40px/16=2.5em */
+    
+}
+

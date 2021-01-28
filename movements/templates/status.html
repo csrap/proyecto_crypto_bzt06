@@ -1,34 +1,36 @@
 {% extends 'index.html' %}
 
 {% block title %}  Estado Inversion {% endblock %}
-
-{% block Header %} 
-        <ul>
-            <li><a href="/index">  INICIO </a></li>
-            <li><a href="/purchase"> COMPRA </a></li>
-            <li><a href="">  STATUS </a></li>
-        </ul>
+{% block Nav %} 
+<table>
+        <tr>
+                <th> <a href="/"><button>INICIO</button></a></th>
+                <th> <a href="/purchase"> <button>COMPRA</button></a></th>
+                <th><a href="">  <button>STATUS</button> </a></th>
+        </tr>
+</table>
 {% endblock %}
 
 {% block content %}
         <div class="title grid">
-                <h1 class="title_text">Status</h1>
+                <h2 class ="h1_movimientos"> STATUS </h2>    
         </div>
 
         <div class="grid">
-            <!-- Markup example 1: input is inside label -->
-            <label for="Invertido">
-                Invertido
-                <input type="text" id="Invertido" name="Invertido" placeholder="Invertido" required>
-            </label>
-            <br>
-        
-            <label for="Valor Actual">
-                Valor Actual 
-                <input type="text" id="Valor Actual" name="Valor Actual" placeholder="Valor Actual" required>
-            </label>
-        
+                <table>
+                        <tr>
+                                <th>           
+                                {{form.invertido.label}}
+                                {{form.invertido(value= valor_invertido)}}
+                                </th>
+                        </tr>
+                        <tr>
+                                <th>
+                                {{form.valor_actual.label}}
+                                {{form.valor_actual(value=valor_actual)}}
+                                </th>
+                        </tr>
+                </table>
         </div>
 
-    
 {% endblock %}

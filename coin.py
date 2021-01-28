@@ -2,29 +2,33 @@ import requests
 from config import*
 from datetime import date
 from datetime import datetime
+from flask import render_template, request, redirect, url_for
+import json 
 
-amount = input("¿Cuanto quieres Invertir?")
-symbol = input("¿Ingresa Moneda ? ")
-convert = input ("¿Cúal Moneda quieres Convertir?")
+url = "https://pro-api.coinmarketcap.com/v1/tools/price-conversion?amount=10000&symbol=EUR&convert=BTC&CMC_PRO_API_KEY=7fe0933d-6fd8-4d55-86ac-241f5495d96e"
 
-url_coin = "https://pro-api.coinmarketcap.com/v1/tools/price-conversion?amount={}&symbol={}&convert={}&CMC_PRO_API_KEY={}"
+print(str(url))
 
+def peticion(url):
+        respuesta = request.get(url) 
+        if respuesta.status_code == 200:
+                datos = respuesta.json() 
+                return(datos)
+
+amount = '10000'
+symbol = 'EUR'
+convert = 'BTC'
+respuesta = peticion (url.format(amount, symbol, convert, API_KEY))
+
+
+
+'''
 respuesta = requests.get(url_coin.format(amount, symbol, convert, API_KEY))
 
 if respuesta.status_code == 200:
         datos = respuesta.json() 
         print(datos)
         convert_ = datos ['data'] ['quote'] [convert] ['price']
-        print(str(convert_))
-        
-                
-#Día actual
-today = date.today()
-
-#Fecha actual
-now = datetime.now()
-
-print(today)
-print("La hora actual es {}:{}".format(now.hour, now.minute))
-
+        print(str(convert_))               
+'''
 

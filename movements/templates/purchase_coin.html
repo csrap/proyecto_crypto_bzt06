@@ -1,48 +1,43 @@
-
 {% extends 'index.html' %}
 
 {% block title %}  Compra {% endblock %}
 
 {% block Nav %} 
 <table>
-        <tr>
-                <th> <a href="/"><button>INICIO</button></a></th>
-                <th> <a href=""> <button>COMPRA</button></a></th>
-                <th><a href="/status">  <button>STATUS</button> </a></th>
-        </tr>
+    <tr>
+            <th> <a href="/"><button>INICIO</button></a></th>
+            <th> <a href=""> <button>COMPRA</button></a></th>
+            <th><a href="/status">  <button>STATUS</button> </a></th>
+    </tr>
 </table>
 {% endblock %}
 
 {% block content %}
     <div class="title grid">
         <h2 class ="h1_movimientos"> COMPRA </h2>      
-    </div>
-            <form action="purchase" method="POST">  
-            {{ form.hidden_tag}}
-                <div>       
+    </div>  
+            <form action="purchase" method="POST"> 
+                {{ form.hidden_tag}}
+                <div> 
                     <div class = "select_2" data-theme="dark"> 
                             <table>
                                 <tr>
                                     <th>
                                     {{form.from_currency.label}} 
-                                    {{form.from_currency}}
-                                    {% for error in form.from_cantidad.errors %}
-                                            <p style="color: rgb(87, 100, 100);">
-                                            {{ error }}
-                                            </p>}}
-                                    {% endfor %}
+                                    {{form.from_currency(value=api_coin[1])}}
                                     </th>
-                                    <th> 
+                                    <th>
                                     {{form.to_currency.label}} 
-                                    {{form.to_currency}}
+                                    {{form.to_currency(value=api_coin[2])}}
                                     </th>
                                 </tr> 
                             </table>
-                </div>
+                    </div>
                             <div >
                                 <tr>
                                     <th colspan="2">
-                                        {{form.from_cantidad( placeholder='Ingresa Monto  de la Moneda que Gastarás') }}
+                                        {{form.from_cantidad.label}}
+                                        {{form.from_cantidad(value=api_coin[0], )}}   
                                         {% for error in form.from_cantidad.errors %}
                                             <p style="color: aqua;">
                                                 {{ error }}
@@ -50,24 +45,19 @@
                                             {% endfor %}
                                     </th>
                                 </tr>
-                            
                             </div>
-                                <div>
-                                    
-                                    <i class="fa fa-calculator fa-2x"></i> 
-                                        {{form.calculadora}}
-                                
+                            <div>
+                                <div class ="contenedor">
+                                    <i class="fa fa-calculator fa-2x"></i>{{form.calculadora}}
                                 </div>
-
-                                        <div>
-                                            {{form.to_cantidad.label}}
-                                            {{form.to_cantidad}}  
-                                        </div>
-                                                
-                                                                    
+                                <div>
+                                {{form.to_cantidad.label}}
+                                {{form.to_cantidad(value=api_coin[3])}}
+                                </div>
+                                
                     <div>
                     {{form.precio_unitario.label}}
-                    {{form.precio_unitario}}
+                    {{form.precio_unitario(value=api_coin[4])}}
                     </div>
 
                         <div class ='field'>
