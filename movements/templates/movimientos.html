@@ -28,19 +28,18 @@
                                 </tr> 
                         {% for ingresos in datos %}
                                 <tr>
-                                        <td>{{ ingresos [0] }}</td>
-                                        <td>{{ ingresos [1] }}</td>
-                                        <td>{{ ingresos[2] }}</td>
-                                        <td>{{ ingresos[3] }}</td>
-                                        <td>{{ ingresos[4] }}</td>
-                                        <td>{{ ingresos [5] }}</td>
-                                        <td>{{ ingresos [6] }}</td>
-                                        <td>{{ ingresos [7] }}</td>
-                                        
+                                        <td>{{ ingresos ['date'] }}</td>
+                                        <td>{{ ingresos ['time'] }}</td>
+                                        <td>{{ ingresos['from_currency'] }}</td>
+                                        <td>{{ ingresos['form_quantity'] }}</td>
+                                        <td>{{ ingresos['to_currency'] }}</td>
+                                        <td>{{ ingresos ['to_quantity'] }}</td>
+                                        <td>{{ ingresos ['precio'] }}</td>
                                 </tr>
                         {% endfor %}
                                 </table>
         {% else %}
-        <p>SIN MOVIMIENTOS</p>
+        <p class="sin_movimientos">SIN MOVIMIENTOS, INVIERTE <i class="fa fa-bitcoin fa-2x"></i> <i class="fa fa-ethereum fa-2x"></i> </p>
+        
         {% endif %}
 {% endblock %}

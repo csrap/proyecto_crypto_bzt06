@@ -2,6 +2,7 @@ body > header, body > main, body > footer {
     padding: 25px;
 }
 
+
 section.container {
     min-height: calc(100wh - 90px);
 }
@@ -47,6 +48,24 @@ width: 50%;
 .letra_header {
     color: #20aab9;
     font-size: 2em; /* 40px/16=2.5em */
+    font-family: 'Lemonada', cursive;
     
+}
+
+.cantidad_coin {
+    width: 30%;
+}
+
+.calculadora_boton {
+    width: 25%
+}
+
+.sin_movimientos {
+    font-family: 'Lemonada', cursive;
+    font-size: 2em;
+    text-align: center;
+    padding-top: 20%;
+    padding-bottom: 15%;
+
 }
 

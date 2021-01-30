@@ -4,10 +4,12 @@ import requests
 from movements import app 
 from flask import render_template, request, redirect, url_for
 import sqlite3 
-from movements.forms import MovementForm
+from movements.forms import MovementForm, Status_Form
 from datetime import date, timezone, datetime
 from config import*
 from prueba import today_2, time 
+from movements.db_ejec import*
+
 
 #DBFILE = app.config ['DBFILE']
 url_coin = "https://pro-api.coinmarketcap.com/v1/tools/price-conversion?amount={}&symbol={}&convert={}&CMC_PRO_API_KEY={}"
@@ -23,15 +25,11 @@ def listaIngresos():
     
     form = MovementForm()
     
-    conn = sqlite3.connect('movements/Data/basededatos.db')
-    c = conn.cursor()
-
-    c.execute('SELECT date, time, from_currency, form_quantity, to_currency, to_quantity, precio FROM movimientos;')
-
-    ingresos = c.fetchall()
     
+    ingresos = consulta('SELECT date, time, from_currency, form_quantity, to_currency, to_quantity, precio FROM movimientos;')
 
-    conn.close()
+    print(ingresos)
+
 
     return render_template("movimientos.html", datos=ingresos, form = form)
     
@@ -40,10 +38,12 @@ def listaIngresos():
 def nuevaCompra():
 
     form = MovementForm() 
-    
-    if request.method == 'POST':
 
-        
+    moneda_saldo = monedas_activas()
+
+    form.from_currency.choices=moneda_saldo 
+    
+    if request.method == 'POST':  #and form.validate(): 
         if form.calculadora.data == True:
             amount = form.from_cantidad.data
             symbol = form.from_currency.data
@@ -57,11 +57,9 @@ def nuevaCompra():
 
 
             return render_template("purchase_coin.html", form = form, api_coin = api_coin)
-        else: 
-                    conn = sqlite3.connect('movements/Data/basededatos.db')
-                    c = conn.cursor()
+        else:
                     
-                    c.execute('INSERT INTO movimientos (date, time, from_currency, form_quantity,to_currency, to_quantity, precio) VALUES (?, ?, ? , ? , ? , ?, ?);',       
+                    consulta('INSERT INTO movimientos (date, time, from_currency, form_quantity,to_currency, to_quantity, precio) VALUES (?, ?, ? , ? , ? , ?, ?);',       
                                 (
                                     today_2,
                                     time,
@@ -70,33 +68,27 @@ def nuevaCompra():
                                     form.to_currency.data,
                                     float(form.to_cantidad.data), 
                                     float(form.precio_unitario.data)
-                                ))
+                                )) 
 
-                    conn.commit()
-                    conn.close() 
-                    
                     return redirect(url_for('listaIngresos'))
-
     return render_template("purchase.html", form = form)
 
 
 @app.route('/status', methods =['GET'])
 def Estado_Inversion():
-    form = MovementForm()
-    conn = sqlite3.connect("movements/data/basededatos.db")
-    c = conn.cursor()
+    form = Status_Form()
 
-    c.execute('SELECT SUM(to_quantity) AS total, to_currency FROM movimientos WHERE from_currency = "EUR" GROUP BY to_currency')
-    ingresos = c.fetchall()
+    ingresos = consulta('SELECT SUM(to_quantity) AS total, to_currency FROM movimientos WHERE from_currency = "EUR" GROUP BY to_currency')
 
-    c.execute('SELECT SUM(form_quantity) AS total, from_currency FROM movimientos WHERE from_currency="EUR"')
-    ingresos2 = c.fetchone()[0]
 
-    conn.close()
+    ingresos_2 = consulta('SELECT SUM(form_quantity) AS total, from_currency FROM movimientos WHERE from_currency="EUR"')
+    
+    ingresos_2 = ingresos_2[0]['total']
+
     total = 0
 
     for ingreso in ingresos:
-        respuesta = peticion(url_coin.format(ingreso[0], ingreso[1],"EUR", API_KEY))
+        respuesta = peticion(url_coin.format(ingreso['total'], ingreso['to_currency'],"EUR", API_KEY))
         total += float(respuesta['data']['quote']['EUR']['price'])
 
-    return render_template ("status.html", form = form, valor_invertido= ingresos2, valor_actual=total)
+    return render_template ("status.html", form = form, valor_invertido= ingresos_2, valor_actual=total)

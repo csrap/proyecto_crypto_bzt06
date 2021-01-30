@@ -7,3 +7,5 @@ test.drawio
 __pycache__/
 
 venv/
+
+coin.py 
