@@ -5,27 +5,29 @@
 {% block Nav %} 
 <table>
         <tr>
-                <th> <a href=""><button>INICIO</button></a></th>
-                <th> <a href="/purchase"> <button>COMPRA</button></a></th>
-                <th><a href="/status">  <button>STATUS</button> </a></th>
+                <th><button class ="boton_nav", disabled = "disabled">INICIO</button></th>
+                <th> <a href="/purchase"> <button class ="boton_nav">COMPRA</button></a></th>
+                <th><a href="/status">  <button class ="boton_nav">STATUS</button> </a></th>
         </tr>
 </table>
 {% endblock %}
 
 
 {% block content %}
+        {% for mensaje in mensajes %}
+        <p class="errores_try">{{mensaje}}</p>
+        {% endfor %}
         {% if datos|length > 0 %}
-        <h2 class ="h1_movimientos"> MOVIMIENTOS</h2>
                                 <table>
-                                <tr>
-                                        <th class="FECHA">Fecha</th>
-                                        <th class="HORA">Hora</th>
-                                        <th class="FROM">From</th>
-                                        <th class = 'Q'> Q </th>
-                                        <th class = 'TO'> TO </th>
-                                        <th class = 'Q'> Q </th>
-                                        <th class = 'P.U'> P.U</th>
-                                </tr> 
+                                        <tr class="tabla_mov">
+                                                <th>Fecha</th>
+                                                <th>Hora</th>
+                                                <th>From</th>
+                                                <th> Q </th>
+                                                <th> TO </th>
+                                                <th> Q </th>
+                                                <th> P.U</th>
+                                        </tr> 
                         {% for ingresos in datos %}
                                 <tr>
                                         <td>{{ ingresos ['date'] }}</td>

@@ -1,27 +1,30 @@
-body > header, body > main, body > footer {
-    padding: 25px;
+body > header {
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 0.25px;
+    
 }
 
+body > main, body > footer {
+    padding: 30px;
+    
+}
 
 section.container {
     min-height: calc(100wh - 90px);
 }
 
 header{
-    background-color: #18162c;
+    background-color:  #18162c;
     text-align: left;
     color: cornsilk;
-    width: 100%;
-    height: 100%;
+    padding-bottom: 0%;
     
 }
-
 footer {
-    background-color: #18162c;
-    text-align: center;
     color: #20aab9;
-    width: 100%;
-    height: 100%;
+    text-align: center;
+    font-weight: bold;
 }
 
 
@@ -33,22 +36,19 @@ width: 50%;
     size: 25px;
 }
 
-.h1_movimientos {
-    text-align: center;
-    font-family: "FontAwesome"; 
-}
-
 .nav_bottom {
-    background-color: #0e7290;
     padding-top: 25px;
     padding-right: 500px;
+    padding-left: 500px;
 
 }
 
 .letra_header {
     color: #20aab9;
-    font-size: 2em; /* 40px/16=2.5em */
-    font-family: 'Lemonada', cursive;
+    font-size: 2.5em; /* 40px/16=2.5em */
+    font-family: 'Yusei Magic', sans-serif;
+    -webkit-text-stroke: 3px #20aab9;
+    color: transparent; 
     
 }
 
@@ -57,15 +57,53 @@ width: 50%;
 }
 
 .calculadora_boton {
-    width: 25%
+    font-family: "FontAwesome";
+    width: 80px;
+    background-color:#18162c;
 }
 
+
 .sin_movimientos {
-    font-family: 'Lemonada', cursive;
+    font-family: 'Kanit', sans-serif;
     font-size: 2em;
     text-align: center;
     padding-top: 20%;
     padding-bottom: 15%;
+
+}
+
+.boton_nav {
+    border-radius: 50px 50px;
+    background-color:#18162c;
+    color: #fff;
+    font-weight: 600;
+    border: 5px solid #20aab9
+
+}
+
+.tabla_mov {
+    background-color: #18162c;
+    text-align: center;
+    color: #18acbd;
+    font-weight: bold;
+}
+
+.boton_inv {
+    color: #18acbd;
+}
+
+.status_form {
+    text-align: center;
+    color: #18162c;
+    font-weight: bold;
+
+}
+
+.errores_try {
+    color:rgb(241, 14, 7);
+    font-weight: bold;
+    font-size: 20px;
+    
 
 }
 

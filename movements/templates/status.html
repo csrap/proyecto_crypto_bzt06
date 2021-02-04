@@ -1,33 +1,32 @@
 {% extends 'index.html' %}
 
 {% block title %}  Estado Inversion {% endblock %}
-{% block Nav %} 
+{% block Nav %}
 <table>
         <tr>
-                <th> <a href="/"><button>INICIO</button></a></th>
-                <th> <a href="/purchase"> <button>COMPRA</button></a></th>
-                <th><a href="">  <button>STATUS</button> </a></th>
+                <th> <a href="/"><button class ="boton_nav">INICIO</button></a></th>
+                <th> <a href="/purchase"> <button class ="boton_nav">COMPRA</button></a></th>
+                <th><button class ="boton_nav", disabled = "disabled">STATUS</button></th>
         </tr>
 </table>
 {% endblock %}
 
 {% block content %}
-        <div class="title grid">
-                <h2 class ="h1_movimientos"> STATUS </h2>    
-        </div>
-
+{% for mensaje in mensajes %}
+        <p class="errores_try">{{mensaje}}</p>
+        {% endfor %}
         <div class="grid">
                 <table>
                         <tr>
                                 <th>           
-                                {{form.invertido.label}}
-                                {{form.invertido(value= valor_invertido)}}
+                                {{form.invertido.label (class ="status_form")}}
+                                {{form.invertido(value= valor_invertido,disabled="disabled")}}
                                 </th>
                         </tr>
                         <tr>
                                 <th>
-                                {{form.valor_actual.label}}
-                                {{form.valor_actual(value=valor_actual)}}
+                                {{form.valor_actual.label(class ="status_form")}}
+                                {{form.valor_actual(value=valor_actual,disabled="disabled") }}
                                 </th>
                         </tr>
                 </table>
