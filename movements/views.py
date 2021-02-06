@@ -7,7 +7,6 @@ import sqlite3
 from movements.forms import MovementForm, Status_Form
 from datetime import date, timezone, datetime
 from config import*
-from prueba import today_2, time 
 from movements.db_ejec import*
 
 

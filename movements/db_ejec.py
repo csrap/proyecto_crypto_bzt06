@@ -1,6 +1,8 @@
 import sqlite3
 from config import*
 from movements import app
+from datetime import date
+from datetime import datetime
 
 DBFILE = app.config['DBFILE'] 
 
@@ -79,7 +81,11 @@ def moneda_saldo_total():
     return dic_saldo
 
 
-
+now = datetime.now()
+today = date.today() 
+today_2 = "{}/{}/{}".format(today.year, today.month, today.day)
+now = datetime.now() 
+time = "{}:{:02d}:{:02d}".format(now.hour, now.minute,now.second)
 
 
         
