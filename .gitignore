@@ -10,4 +10,4 @@ venv/
 
 coin.py 
 
-movements/Data/basededatos.*
+movements/Data/basededatos.db
