@@ -99,13 +99,14 @@ def Estado_Inversion():
 
         ingresos_2 = consulta('SELECT SUM(form_quantity) AS total, from_currency FROM movimientos WHERE from_currency="EUR"')
         
-        ingresos_2 = ingresos_2[0]['total']
+        ingresos_2 = str(ingresos_2[0]['total'])+ " €"
 
         total = 0
         try: 
             for ingreso in ingresos:
                 respuesta = peticion(url_coin.format(ingreso['total'], ingreso['to_currency'],"EUR", API_KEY))
                 total += float(respuesta['data']['quote']['EUR']['price'])
+            total = str(total) + " €"
             return render_template ("status.html", form = form, valor_invertido= ingresos_2, valor_actual=total)
         except Exception as e:
             print("**ERROR**🔧: Acceso a API - insert: {} - {}". format(type(e).__name__, e))

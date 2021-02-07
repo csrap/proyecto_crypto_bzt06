@@ -21,7 +21,7 @@ Columna,Tipo
 * to_currency integer Foreign key a CRYPTOS
 * to_quantity Real
 
-### 5.- Crear un archivo config.py, donde dejaras tu API_KEY, SECRET KEY, y ruta de la base de datos
+### 5.- Crear un archivo config.py, donde dejaras tu API_KEY, SECRET KEY, ruta de la base de datos, SECRET_KEY 
 
 
 
